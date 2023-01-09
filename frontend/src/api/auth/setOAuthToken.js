@@ -1,8 +1,9 @@
-import {AUTH_URL} from "../system/env";
+import {AUTH_URL} from "../../system/env";
+import user_get_self from "../user/user_get_self";
 
 export async function SetOAuthToken() {
-
     console.log('Go to auth on url=' + AUTH_URL)
+
     await fetch(AUTH_URL)
         .then(response => {
                 response
@@ -13,4 +14,5 @@ export async function SetOAuthToken() {
                     })
             }
         )
+    user_get_self()
 }

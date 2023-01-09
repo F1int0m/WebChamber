@@ -1,25 +1,18 @@
 import React from 'react';
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
-import {info} from "../../components/ProfileBox/data";
-import {NavLink, Outlet} from "react-router-dom";
-import {
-    ROOT_URL,
-    PROFILE_URL,
-    CHALLENGES_URL,
-    CASUAL_URL
-} from "../../../system/env";
+import {Outlet} from "react-router-dom";
+import style from '../setupPages.module.scss'
+import ContentHeader from "../../components/Content/ContentHeader/ContentHeader";
+import {useSelector} from "react-redux";
 
 const Profile = () => {
+    const profile = useSelector(state => state.profile)
+    console.log(profile)
     return (
-        <div>
-            <ProfileBox isFull={true} info={info}/>
-            <header>
-                <h1>
-                    <NavLink to={ROOT_URL + PROFILE_URL + CHALLENGES_URL}>Челленджи</NavLink>
-                    <NavLink to={ROOT_URL + PROFILE_URL + CASUAL_URL}>Все работы</NavLink>
-                </h1>
-            </header>
-            <Outlet />
+        <div className={style.setupProfile}>
+            <ProfileBox isFull={true} profile={profile}/>
+            <ContentHeader page={'profile'}/>
+            <Outlet/>
         </div>
     );
 };
